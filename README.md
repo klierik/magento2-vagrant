@@ -31,7 +31,7 @@ If your system support NFS open `Vagrantfile` and make changes for `# Synced fol
 
 # Step-by-step installation
 ## Step 1 — Get your Magento2-vagrant copy
-First af all [download](https://github.com/klierik/magento2-vagrant/archive/master.zip) this repo copy as zip archive (you will need git for clone magento2 repo) and unpack to your `project_folder/`.
+First of all [download](https://github.com/klierik/magento2-vagrant/archive/master.zip) this repo copy as zip archive (you will need git for clone magento2 repo) and unpack to your `project_folder/`.
 
 Move all folders and files to `project_folder/` root so you will get something like that:
 ```
