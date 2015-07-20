@@ -1,6 +1,6 @@
 # What is that?
-Magento2-vagrant — ultra light Vagrant development environment for running Magento CMS, based on Ubuntu Trusty 64.
-I create this repo for my self as easyest way install Magento and share with you.
+Magento2-vagrant — ultra light Vagrant development environment for running Magento2 CMS, based on Ubuntu Trusty 64.
+I create this repo for my self as easyest way install Magento2 and share with you.
 
 Note: *If you are looking Vagrant environment for Magento 1 see [Simple-Magento-Vagrant](https://github.com/klierik/simple-magento-vagrant)*
 
