@@ -54,7 +54,7 @@ Vagrant.configure("2") do |config|
     config.hostmanager.manage_host = true
     config.hostmanager.ignore_private_ip = false
     config.hostmanager.include_offline = true
-    config.vm.define 'magento2' do |node|
+    config.vm.define 'magento2-vagrant' do |node|
         node.vm.hostname = 'magento2-vagrant'
         node.vm.network :private_network, ip: '192.168.10.10'
         node.hostmanager.aliases = %w(magento2-vagrant.dev)

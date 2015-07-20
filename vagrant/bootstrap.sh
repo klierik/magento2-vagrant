@@ -82,10 +82,6 @@ echo "=================================================="
 curl --silent https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
-echo "Install Composer dependencies and update chown..."
-cd /vagrant/httpdocs && composer install && chown -R www-data
-echo "done."
-
 
 echo "=================================================="
 echo "INSTALLING and CONFIGURE NTP"
