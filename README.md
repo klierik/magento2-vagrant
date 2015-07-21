@@ -410,4 +410,8 @@ That's it. Now you need just reset cache in `Admin panel -> System -> Cache Mana
 * Flush JavaScript/CSS Cache
 * Select all cache types and Refresh it
 
+# Troubleshooting
+## Problem with skin styles (less to css compile)
+If you have problem with front-end view with broken styles read this solution: [Magento2 + Magento/blank + Magento/luma + broken styles](https://github.com/magento/magento2/issues/1525) 
+
 I wish you luck :)
