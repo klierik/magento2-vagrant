@@ -136,40 +136,8 @@ Now go to `project_folder/vagrant/` and run command
 ```
 $ vagrant ssh
 Welcome to Ubuntu 14.04.2 LTS (GNU/Linux 3.13.0-55-generic x86_64)
-
- * Documentation:  https://help.ubuntu.com/
-
-  System information as of Mon Jul 20 15:25:27 UTC 2015
-
-  System load:  0.89              Processes:           81
-  Usage of /:   3.2% of 39.34GB   Users logged in:     0
-  Memory usage: 6%                IP address for eth0: 10.0.2.15
-  Swap usage:   0%
-
-  Graph this data and manage this system at:
-    https://landscape.canonical.com/
-
-  Get cloud support with Ubuntu Advantage Cloud Guest:
-    http://www.ubuntu.com/business/services/cloud
-
-0 packages can be updated.
-0 updates are security updates.
-
-
-_____________________________________________________________________
-WARNING! Your environment specifies an invalid locale.
- This can affect your user experience significantly, including the
- ability to manage packages. You may install the locales by running:
-
-   sudo apt-get install language-pack-UTF-8
-     or
-   sudo locale-gen UTF-8
-
-To see all available language packs, run:
-   apt-cache search "^language-pack-[a-z][a-z]$"
-To disable this message for all users, run:
-   sudo touch /var/lib/cloud/instance/locale-check.skip
-_____________________________________________________________________
+...
+...
 ```
 
 If you something like before it's mean everything is fine so let's install MySQL (i don't know how to install it in silent mode but if yoo know how please share with us).
