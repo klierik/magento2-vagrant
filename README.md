@@ -119,6 +119,17 @@ $ cd /vagrant/httpdocs/
 $ composer install
 ```
 and wait while all composer download all modules.
+If system will ask you a Token:
+```
+Could not fetch https://api.github.com/repos/sebastianbergmann/php-timer/zipball/83fe1bdc5d47658b727595c14da140da92b3d66d, please create a GitHub OAuth token to go over the API rate limit
+Head to https://github.com/settings/tokens/new?scopes=repo&description=Composer+on+magento2-vagrant+2015-07-21+1424
+to retrieve a token. It will be stored in "/home/vagrant/.composer/auth.json" for future use by Composer.
+Token (hidden):
+```
+go to you [github account](https://github.com/settings/tokens), generate the new one and past. After this system says:
+```
+Token stored successfully.
+```
 
 ## Step 4 — Install MySQL manually
 Now go to `project_folder/vagrant/` and run command
