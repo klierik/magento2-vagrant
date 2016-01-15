@@ -11,7 +11,7 @@ Note: *If you are looking Vagrant environment for Magento 1 see [Simple-Magento-
 After installation you will get clean Magento 2 with latest sample data. 
 
 # Requirements
-+ [VirtualBox](https://www.virtualbox.org/wiki/Downloads) — VirtualBox is a powerful x86 and AMD64/Intel64 virtualization product for enterprise as well as home use.
++ [VMware Fusion](https://my.vmware.com/web/vmware/info?slug=desktop_end_user_computing/vmware_fusion/8_0) — VirtualBox is a powerful x86 and AMD64/Intel64 virtualization product for enterprise as well as home use.
 + [Vagrant](http://www.vagrantup.com/downloads.html) — Vagrant is a tool for building complete development environments.
 + [Vagrant Host Manager](https://github.com/smdahlen/vagrant-hostmanager) and [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest)
 + [Git](https://git-scm.com/downloads) — Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
@@ -31,7 +31,7 @@ If your system support NFS open `Vagrantfile` and make changes for `# Synced fol
 
 # Step-by-step installation
 ## Step 1 — Get your Magento2-vagrant copy
-First of all [download](https://github.com/klierik/magento2-vagrant/archive/master.zip) this repo copy as zip archive (you will need git for clone magento2 repo) and unpack to your `project_folder/`.
+First of all [download](https://github.com/klierik/magento2-vagrant/archive/1.0.0-virtualbox.zip) this repo copy as zip archive (you will need git for clone magento2 repo) and unpack to your `project_folder/`.
 
 Move all folders and files to `project_folder/` root so you will get something like that:
 ```
