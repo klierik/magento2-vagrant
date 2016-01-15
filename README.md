@@ -11,7 +11,7 @@ Note: *If you are looking Vagrant environment for Magento 1 see [Simple-Magento-
 After installation you will get clean Magento 2 with latest sample data. 
 
 # Requirements
-+ [VMware Fusion](https://my.vmware.com/web/vmware/info?slug=desktop_end_user_computing/vmware_fusion/8_0) — VirtualBox is a powerful x86 and AMD64/Intel64 virtualization product for enterprise as well as home use.
++ [VirtualBox](https://www.vmware.com/products/fusion) — VirtualBox is a powerful x86 and AMD64/Intel64 virtualization product for enterprise as well as home use.
 + [Vagrant](http://www.vagrantup.com/downloads.html) — Vagrant is a tool for building complete development environments.
 + [Vagrant Host Manager](https://github.com/smdahlen/vagrant-hostmanager) and [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest)
 + [Git](https://git-scm.com/downloads) — Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
