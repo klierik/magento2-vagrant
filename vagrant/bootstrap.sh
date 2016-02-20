@@ -86,9 +86,11 @@ echo "=================================================="
 echo "INSTALLING COMPOSER"
 echo "=================================================="
 curl --silent https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer && php5enmod mcrypt
+mv composer.phar /usr/local/bin/composer
+php5enmod mcrypt
 
-cd /vagrant/httpdocs && composer install
+cd /vagrant/httpdocs
+composer install
 
 echo "=================================================="
 echo "INSTALLING and CONFIGURE NTP"
