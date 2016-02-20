@@ -77,11 +77,18 @@ service apache2 restart
 
 
 echo "=================================================="
+echo "INSTALLING GIT"
+echo "=================================================="
+apt-get -y install git
+
+
+echo "=================================================="
 echo "INSTALLING COMPOSER"
 echo "=================================================="
 curl --silent https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
+mv composer.phar /usr/local/bin/composer && php5enmod mcrypt
 
+cd /vagrant/httpdocs && composer install
 
 echo "=================================================="
 echo "INSTALLING and CONFIGURE NTP"

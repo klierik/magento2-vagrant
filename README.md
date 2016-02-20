@@ -11,7 +11,7 @@ Note: *If you are looking Vagrant environment for Magento 1 see [Simple-Magento-
 After installation you will get clean Magento 2 with latest sample data. 
 
 # Requirements
-+ [VirtualBox](https://www.virtualbox.org/wiki/Downloads) — VirtualBox is a powerful x86 and AMD64/Intel64 virtualization product for enterprise as well as home use.
++ [VMware Fusion](https://www.vmware.com/products/fusion) — VMware Fusion is a software hypervisor developed by VMware for computers running OS X with Intel processors. For [VirtualBox](https://www.vmware.com/products/fusion) version please look [1.0.0-virtualbox](https://github.com/klierik/magento2-vagrant/tree/1.0.0-virtualbox) branch. 
 + [Vagrant](http://www.vagrantup.com/downloads.html) — Vagrant is a tool for building complete development environments.
 + [Vagrant Host Manager](https://github.com/smdahlen/vagrant-hostmanager) and [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest)
 + [Git](https://git-scm.com/downloads) — Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
@@ -98,9 +98,9 @@ Open you `project_folder/vagrant/` and run `vagrant up` to install:
 ```
 $ cd /path/to/project_folder/vagrant/
 $ vagrant up
-Bringing machine 'magento2-vagrant' up with 'virtualbox' provider...
-==> magento2-vagrant: Importing base box 'trusty64'...
-==> magento2-vagrant: Matching MAC address for NAT networking...
+Bringing machine 'magento2-vagrant' up with 'vmware_fusion' provider...
+==> magento2-vagrant: Cloning VMware VM: 'trusty64'. This can take some time...
+==> magento2-vagrant: Verifying vmnet devices are healthy...
 ...
 ...
 ...
@@ -374,5 +374,12 @@ That's it. Now you need just reset cache in `Admin panel -> System -> Cache Mana
 # Troubleshooting
 ## Problem with skin styles (less to css compile)
 If you have problem with front-end view with broken styles read this solution: [Magento2 + Magento/blank + Magento/luma + broken styles](https://github.com/magento/magento2/issues/1525) 
+
+# Changelog
+All notable changes to this project will be documented in this section
+
+## [1.0.0] - 2016-01-15
+### Init
+Init stable release based on [VMware Fusion](https://www.vmware.com/products/fusion).
 
 I wish you luck :)

@@ -9,16 +9,19 @@ Vagrant.configure("2") do |config|
     # Every Vagrant virtual environment requires a box to build off of.
     # config.vm.box = "precise64"
     # config.vm.box = "precise32"
-
     config.vm.box = "trusty64"
 
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system.
     # config.vm.box_url = "http://files.vagrantup.com/precise64.box"
     # config.vm.box_url = "http://files.vagrantup.com/precise32.box"
-
     config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
 
+    # Prefer VMware Fusion before VirtualBox
+      config.vm.provider "vmware_fusion"
+      config.vm.provider "virtualbox"
+
+    # Provision
     config.vm.provision :shell, :path => "bootstrap.sh"
 
     # Create a forwarded port mapping which allows access to a specific port
@@ -28,32 +31,23 @@ Vagrant.configure("2") do |config|
     config.vm.network :forwarded_port, guest: 22, host: 2210
 
     # Synced folder
-    #
-    # NFS Configuration
-    # Uncomment this rules if your system support NFS
-    # config.vm.synced_folder "../magento2/", "/vagrant/httpdocs", nfs: true, mount_options: ["nolock", "async"], bsd__nfs_options: ["alldirs","async","nolock"]
-    # config.nfs.map_uid = 0
-    # config.nfs.map_gid = 0
-    #
-    # NON-NFS Configuration
     config.vm.synced_folder "../magento2/", "/vagrant/httpdocs", id: "vagrant-root", owner: "vagrant", group: "www-data", mount_options: ["dmode=775,fmode=664"]
-
 
     # VirtualBox settings
     config.vm.provider :virtualbox do |vb|
         # vb.customize ["modifyvm", :id, "--memory", "640"]
         # vb.customize ["modifyvm", :id, "--memory", "1024"]
-        vb.customize ["modifyvm", :id, "--memory", "2048"]
+        # vb.customize ["modifyvm", :id, "--memory", "2048"]
         # vb.customize ["modifyvm", :id, "--memory", "3072"]
-        # vb.customize ["modifyvm", :id, "--memory", "4096"]
+        vb.customize ["modifyvm", :id, "--memory", "4096"]
     end
 
 
     # Host Manager
-    config.hostmanager.enabled = true
-    config.hostmanager.manage_host = true
-    config.hostmanager.ignore_private_ip = false
-    config.hostmanager.include_offline = true
+    config.hostmanager.enabled              = true
+    config.hostmanager.manage_host          = true
+    config.hostmanager.ignore_private_ip    = false
+    config.hostmanager.include_offline      = true
     config.vm.define 'magento2-vagrant' do |node|
         node.vm.hostname = 'magento2-vagrant'
         node.vm.network :private_network, ip: '192.168.10.10'
