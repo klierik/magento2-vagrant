@@ -144,7 +144,7 @@ If you something like before it's mean everything is fine so let's install MySQL
 
 Now run commands:
 ```
-$ sudo apt-get install mysql-server-5.6 mysql-client-5.6 && mysql_secure_installation
+$ sudo apt-get -y install mysql-server-5.6 mysql-client-5.6 && mysql_secure_installation
 $ sudo apt-get -y autoremove && sudo apt-get -y autoclean
 ```
 
