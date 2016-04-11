@@ -8,10 +8,10 @@ Note: *If you are looking Vagrant environment for Magento 1 see [Simple-Magento-
 + Ubuntu 14.04 LTS + Apache 2.4 + Php 5.6 + MySQL 5.6
 + Magento2 with latest sample data
 
-After installation you will get clean Magento 2 with latest sample data. 
+After installation you will get clean Magento 2 with latest sample data.
 
 # Requirements
-+ [VMware Fusion](https://www.vmware.com/products/fusion) — VMware Fusion is a software hypervisor developed by VMware for computers running OS X with Intel processors. For [VirtualBox](https://www.vmware.com/products/fusion) version please look [1.0.0-virtualbox](https://github.com/klierik/magento2-vagrant/tree/1.0.0-virtualbox) branch. 
++ [VMware Fusion](https://www.vmware.com/products/fusion) — VMware Fusion is a software hypervisor developed by VMware for computers running OS X with Intel processors. For [VirtualBox](https://www.vmware.com/products/fusion) version please look [1.0.0-virtualbox](https://github.com/klierik/magento2-vagrant/tree/1.0.0-virtualbox) branch.
 + [Vagrant](http://www.vagrantup.com/downloads.html) — Vagrant is a tool for building complete development environments.
 + [Vagrant Host Manager](https://github.com/smdahlen/vagrant-hostmanager) and [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest)
 + [Git](https://git-scm.com/downloads) — Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
@@ -19,9 +19,9 @@ After installation you will get clean Magento 2 with latest sample data.
 # Vagrant configuration
 In `Vagrantfile` you can find all configuration like ip-address or domain name. By defaults:
 
-**Domain:** [http://magento2-vagrant.dev](http://magento2-vagrant.dev) 
+**Domain:** [http://magento2-vagrant.dev](http://magento2-vagrant.dev)
 
-**IP-address:** [192.168.10.10](192.168.10.10) 
+**IP-address:** [192.168.10.10](192.168.10.10)
 
 
 # Enable Network File System (NFS)
@@ -113,6 +113,14 @@ Bringing machine 'magento2-vagrant' up with 'vmware_fusion' provider...
 ```
 it will install Ubuntu + Apache + PHP + Composer (and magento dependencies).
 
+The script automatically generates a root password for the MySQL installation.  Look for it in the output of `vagrant up`; e.g.:
+
+```
+########################################################"
+# Your MySQL root password is: ohpifioyeo
+########################################################"
+```
+
 Now open `project_folder/vagrant` and run `$ vagrant_ssh`. When you login to Ubuntu tun commands:
 ```
 $ cd /vagrant/httpdocs/
@@ -131,125 +139,14 @@ go to you [github account](https://github.com/settings/tokens), generate the new
 Token stored successfully.
 ```
 
-## Step 4 — Install MySQL manually
-Now go to `project_folder/vagrant/` and run command
-```
-$ vagrant ssh
-Welcome to Ubuntu 14.04.2 LTS (GNU/Linux 3.13.0-55-generic x86_64)
-...
-...
-```
-
-If you something like before it's mean everything is fine so let's install MySQL (i don't know how to install it in silent mode but if yoo know how please share with us).
-
-Now run commands:
-```
-$ sudo apt-get -y install mysql-server-5.6 mysql-client-5.6 && mysql_secure_installation
-$ sudo apt-get -y autoremove && sudo apt-get -y autoclean
-```
-
-Thought installation MySQL command lime will ask you some questions [Y/n] so enter `Y` and press enter. When you will see window with password for MySQL server enter password (remember it).
-And after that `mysql_secure_installation` will ask you about some question too so configure it, example:
-```
-NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MySQL
-      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
-
-In order to log into MySQL to secure it, we'll need the current
-password for the root user.  If you've just installed MySQL, and
-you haven't set the root password yet, the password will be blank,
-so you should just press enter here.
-
-Enter current password for root (enter for none): 
-ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
-Enter current password for root (enter for none): 
-OK, successfully used password, moving on...
-
-Setting the root password ensures that nobody can log into the MySQL
-root user without the proper authorisation.
-
-You already have a root password set, so you can safely answer 'n'.
-
-Change the root password? [Y/n] n
- ... skipping.
-
-By default, a MySQL installation has an anonymous user, allowing anyone
-to log into MySQL without having to have a user account created for
-them.  This is intended only for testing, and to make the installation
-go a bit smoother.  You should remove them before moving into a
-production environment.
-
-Remove anonymous users? [Y/n] n
- ... skipping.
-
-Normally, root should only be allowed to connect from 'localhost'.  This
-ensures that someone cannot guess at the root password from the network.
-
-Disallow root login remotely? [Y/n] n
- ... skipping.
-
-By default, MySQL comes with a database named 'test' that anyone can
-access.  This is also intended only for testing, and should be removed
-before moving into a production environment.
-
-Remove test database and access to it? [Y/n] y
- - Dropping test database...
-ERROR 1008 (HY000) at line 1: Can't drop database 'test'; database doesn't exist
- ... Failed!  Not critical, keep moving...
- - Removing privileges on test database...
- ... Success!
-
-Reloading the privilege tables will ensure that all changes made so far
-will take effect immediately.
-
-Reload privilege tables now? [Y/n] y
- ... Success!
-
-
-
-
-All done!  If you've completed all of the above steps, your MySQL
-installation should now be secure.
-
-Thanks for using MySQL!
-
-
-Cleaning up...
-```
-
-Perfect! Now let's enter to MySQL and create database:
-```
-$ mysql -u root -p
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 48
-Server version: 5.6.19-0ubuntu0.14.04.1 (Ubuntu)
-
-Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> create database magento;
-Query OK, 1 row affected (0.00 sec)
-
-mysql> GRANT ALL ON magento.* TO magento@localhost IDENTIFIED BY 'magento';
-Query OK, 0 rows affected (0.00 sec)
-
-mysql> exit
-Bye
-```
-
-## Step 5 — Magento2 installation
+## Step 4 — Magento2 installation
 Open browser and go [http://magento2-vagrant.dev/setup/](http://magento2-vagrant.dev/setup/)
 
 ### Magento2 Installation step 0 — Agree and Setup Magento
 Just press **Agree and Setup Magento** button
 
 ### Magento2 Installation step 1 — Readiness Check
-Press **Start Readiness Check** button and wait for checking. 
+Press **Start Readiness Check** button and wait for checking.
 
 After finish system says *Completed! You can now move on to the next step.* and you can press **Next** button.
 
@@ -258,11 +155,11 @@ Here you just need enter your database password that you already enter at **Step
 
 ### Magento2 Installation step 3 — Web Configuration
 There is nothing to say because here as usual everything is fine by default so press **Next** button.
- 
+
 ### Magento2 Installation step 4 — Customize Your Store
 Here you can edit timezone, currency and language options. At this step *Sample Data* checkbox should be disabled (we will install it via command line because via web-interface system show error). Also you can check/uncheck some modules at **Advanced Modules Configurations** collapse.
 When you finis just press **Next** button.
- 
+
 ### Magento2 Installation step 5 — Create Admin Account
 It's easy — just enter all data and press **Next** button
 
@@ -272,7 +169,7 @@ You're ready! Press **Install Now** button and wait while installation complete 
 When you will see **Success** page system will tell you **Your Store Address:** [http://magento2-vagrant.dev/](http://magento2-vagrant.dev/), **Magento Admin Address:** [http://magento2-vagrant.dev/admin/](http://magento2-vagrant.dev/admin/) and other important information.
 Perfect, it is work! Now install Sample Data.
 
-## Step 6 — Magento2 sample data installation
+## Step 5 — Magento2 sample data installation
 Go to `project_folder/vagrant/` and run `vagrant ssh`. Then run commands:
 ```
 $ cd /vagrant/httpdocs
@@ -373,7 +270,7 @@ That's it. Now you need just reset cache in `Admin panel -> System -> Cache Mana
 
 # Troubleshooting
 ## Problem with skin styles (less to css compile)
-If you have problem with front-end view with broken styles read this solution: [Magento2 + Magento/blank + Magento/luma + broken styles](https://github.com/magento/magento2/issues/1525) 
+If you have problem with front-end view with broken styles read this solution: [Magento2 + Magento/blank + Magento/luma + broken styles](https://github.com/magento/magento2/issues/1525)
 
 # Changelog
 All notable changes to this project will be documented in this section
