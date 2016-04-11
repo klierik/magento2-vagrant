@@ -121,23 +121,28 @@ The script automatically generates a root password for the MySQL installation.  
 ########################################################"
 ```
 
-Now open `project_folder/vagrant` and run `$ vagrant_ssh`. When you login to Ubuntu tun commands:
-```
-$ cd /vagrant/httpdocs/
-$ composer install
-```
-and wait while all composer download all modules.
-If system will ask you a Token:
+Due to Github API limits, you may get an error when `composer install` is running.  If this happens, the system will ask you for a Token; e.g.:
 ```
 Could not fetch https://api.github.com/repos/sebastianbergmann/php-timer/zipball/83fe1bdc5d47658b727595c14da140da92b3d66d, please create a GitHub OAuth token to go over the API rate limit
 Head to https://github.com/settings/tokens/new?scopes=repo&description=Composer+on+magento2-vagrant+2015-07-21+1424
 to retrieve a token. It will be stored in "/home/vagrant/.composer/auth.json" for future use by Composer.
 Token (hidden):
 ```
-go to you [github account](https://github.com/settings/tokens), generate the new one and past. After this system says:
+
+If this happens, go to you [github account](https://github.com/settings/tokens), generate the new one and run `composer install` manually.  
+
+Open `project_folder/vagrant` and run `vagrant_ssh`; then run:
+```
+$ cd /vagrant/httpdocs/
+$ composer install
+```
+Enter the generated token when you're asked for it.  You should see:
 ```
 Token stored successfully.
 ```
+
+After that wait while all composer installs all modules.
+
 
 ## Step 4 — Magento2 installation
 Open browser and go [http://magento2-vagrant.dev/setup/](http://magento2-vagrant.dev/setup/)
@@ -212,45 +217,7 @@ and after update run next command and wait 5-10 min (depends of your computer pe
 ```
 $ php magento sampledata:install admin
 Installing theme:
-.
-Installing customers:
-sh: 1: /usr/sbin/sendmail: not found
-.
-Installing CMS pages:
-....
-Installing catalog attributes:
-........
-Installing categories:
-........
-Installing simple products:
-........
-Installing bundle products:
-.
-Installing downloadable products:
-......
-Installing grouped products:
-.
-Installing configurable products:
-...............
-Installing Tablerate:
-.........
-Installing taxes:
-..
-Installing CMS blocks:
-..................
-Installing product links:
-.............
-Installing orders:
-..
-Installing sales rules:
-....
-Installing product reviews:
-...........
-Installing catalog rules:
-.
-Installing wishlists:
-.
-Installing Widgets:
+(...)
 ..................Successfully installed sample data.
 ```
 
