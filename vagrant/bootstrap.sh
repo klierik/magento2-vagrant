@@ -101,19 +101,20 @@ apt-get -y install ntp
 echo "=================================================="
 echo "INSTALLING MYSQL and CONFIGURE DATABASE"
 echo "======== ATTENTION!!! READ THIS PLEASE ==========="
-echo ""
-echo "MySQL 5.6 need to be installed manually."
-echo "Please run next command and enter password or whatever system will ask you..."
-echo ""
-echo "$ sudo apt-get -y install mysql-server-5.6 mysql-client-5.6 && mysql_secure_installation"
-echo "$ sudo apt-get -y autoremove && sudo apt-get -y autoclean"
-echo ""
-echo "After MySQL Installation complete run:"
-echo "$ mysql -u root -p"
-echo "> create database magento;"
-echo "> GRANT ALL ON magento.* TO magento@localhost IDENTIFIED BY 'magento';"
-echo "=================================================="
-
+sudo apt-get install pwgen
+MYSQL_ROOT_PASSWORD=`pwgen 10 1`
+MYSQL_MAGENTO_DB=magento2
+MYSQL_MAGENTO_USER=magento2
+MYSQL_MAGENTO_PASSWORD=`pwgen 10 1`
+echo "########################################################"
+echo "# Your MySQL root password is: $MYSQL_ROOT_PASSWORD"
+echo "# Your MySQL $MYSQL_MAGENTO_USER password is: $MYSQL_MAGENTO_PASSWORD"
+echo "########################################################"
+echo "mysql-server mysql-server/root_password password $MYSQL_ROOT_PASSWORD" | sudo debconf-set-selections
+echo "mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD" | sudo debconf-set-selections
+sudo apt-get -y install mysql-server-5.6 mysql-client-5.6
+echo "create database $MYSQL_MAGENTO_DB;" | mysql -u root -p$MYSQL_ROOT_PASSWORD
+echo "GRANT ALL ON $MYSQL_MAGENTO_DB.* TO $MYSQL_MAGENTO_USER@localhost IDENTIFIED BY '$MYSQL_MAGENTO_PASSWORD';" | mysql -u root -p$MYSQL_ROOT_PASSWORD
 
 echo "=================================================="
 echo "CLEANING..."
