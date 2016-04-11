@@ -115,6 +115,34 @@ echo "> GRANT ALL ON magento.* TO magento@localhost IDENTIFIED BY 'magento';"
 echo "=================================================="
 
 
+
+echo "=================================================="
+echo "INSTALLING MAGENTO 2"
+echo "=================================================="
+MAGENTO_ADMIN_USER=admin
+MAGENTO_ADMIN_PASSWORD=`pwgen -n 10 1`
+MAGENTO_ADMIN_EMAIL=admin@magento2-vagrant.com
+echo "########################################################"
+echo "# Your Magento admin user is: $MAGENTO_ADMIN_USER"
+echo "# Your Magento admin password is: $MAGENTO_ADMIN_PASSWORD"
+echo "# Your Magento admin email is: $MAGENTO_ADMIN_EMAIL"
+echo "########################################################"
+
+cd /vagrant/httpdocs/bin
+php magento setup:install --db-user=$MYSQL_MAGENTO_USER \
+    --db-name=$MYSQL_MAGENTO_DB --db-password=$MYSQL_MAGENTO_PASSWORD \
+    --admin-user=$MAGENTO_ADMIN_USER --admin-password=$MAGENTO_ADMIN_PASSWORD \
+    --admin-email=$MAGENTO_ADMIN_EMAIL --admin-firstname=Admin --admin-lastname=Admin \
+    --base-url=http://magento2-vagrant.dev/
+
+crontasks=`tempfile`
+cat > $crontasks <<_EOF
+*/1 * * * * /usr/bin/php -c /etc/php5/cli/php.ini /vagrant/httpdocs/bin/magento cron:run
+*/1 * * * * /usr/bin/php -c /etc/php5/cli/php.ini /vagrant/httpdocs/update/cron.php
+*/1 * * * * /usr/bin/php -c /etc/php5/cli/php.ini /vagrant/httpdocs/bin/magento setup:cron:run
+_EOF
+crontab $crontasks && rm -f $crontasks
+
 echo "=================================================="
 echo "CLEANING..."
 echo "=================================================="
