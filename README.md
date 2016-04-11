@@ -8,10 +8,10 @@ Note: *If you are looking Vagrant environment for Magento 1 see [Simple-Magento-
 + Ubuntu 14.04 LTS + Apache 2.4 + Php 5.6 + MySQL 5.6
 + Magento2 with latest sample data
 
-After installation you will get clean Magento 2 with latest sample data. 
+After installation you will get clean Magento 2 with latest sample data.
 
 # Requirements
-+ [VMware Fusion](https://www.vmware.com/products/fusion) — VMware Fusion is a software hypervisor developed by VMware for computers running OS X with Intel processors. For [VirtualBox](https://www.vmware.com/products/fusion) version please look [1.0.0-virtualbox](https://github.com/klierik/magento2-vagrant/tree/1.0.0-virtualbox) branch. 
++ [VMware Fusion](https://www.vmware.com/products/fusion) — VMware Fusion is a software hypervisor developed by VMware for computers running OS X with Intel processors. For [VirtualBox](https://www.vmware.com/products/fusion) version please look [1.0.0-virtualbox](https://github.com/klierik/magento2-vagrant/tree/1.0.0-virtualbox) branch.
 + [Vagrant](http://www.vagrantup.com/downloads.html) — Vagrant is a tool for building complete development environments.
 + [Vagrant Host Manager](https://github.com/smdahlen/vagrant-hostmanager) and [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest)
 + [Git](https://git-scm.com/downloads) — Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
@@ -19,9 +19,9 @@ After installation you will get clean Magento 2 with latest sample data.
 # Vagrant configuration
 In `Vagrantfile` you can find all configuration like ip-address or domain name. By defaults:
 
-**Domain:** [http://magento2-vagrant.dev](http://magento2-vagrant.dev) 
+**Domain:** [http://magento2-vagrant.dev](http://magento2-vagrant.dev)
 
-**IP-address:** [192.168.10.10](192.168.10.10) 
+**IP-address:** [192.168.10.10](192.168.10.10)
 
 
 # Enable Network File System (NFS)
@@ -113,6 +113,13 @@ Bringing machine 'magento2-vagrant' up with 'vmware_fusion' provider...
 ```
 it will install Ubuntu + Apache + PHP + Composer (and magento dependencies).
 
+Make note of the Magento Admin URI that is printed during the setup.  You will need this to access the Magento 2 admin interface; e.g.:
+
+```
+[SUCCESS]: Magento installation complete.
+[SUCCESS]: Magento Admin URI: /admin_1gg6rw
+```
+
 Now open `project_folder/vagrant` and run `$ vagrant_ssh`. When you login to Ubuntu tun commands:
 ```
 $ cd /vagrant/httpdocs/
@@ -159,9 +166,9 @@ password for the root user.  If you've just installed MySQL, and
 you haven't set the root password yet, the password will be blank,
 so you should just press enter here.
 
-Enter current password for root (enter for none): 
+Enter current password for root (enter for none):
 ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
-Enter current password for root (enter for none): 
+Enter current password for root (enter for none):
 OK, successfully used password, moving on...
 
 Setting the root password ensures that nobody can log into the MySQL
@@ -219,7 +226,7 @@ Cleaning up...
 Perfect! Now let's enter to MySQL and create database:
 ```
 $ mysql -u root -p
-Enter password: 
+Enter password:
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 48
 Server version: 5.6.19-0ubuntu0.14.04.1 (Ubuntu)
@@ -249,7 +256,7 @@ Open browser and go [http://magento2-vagrant.dev/setup/](http://magento2-vagrant
 Just press **Agree and Setup Magento** button
 
 ### Magento2 Installation step 1 — Readiness Check
-Press **Start Readiness Check** button and wait for checking. 
+Press **Start Readiness Check** button and wait for checking.
 
 After finish system says *Completed! You can now move on to the next step.* and you can press **Next** button.
 
@@ -258,11 +265,11 @@ Here you just need enter your database password that you already enter at **Step
 
 ### Magento2 Installation step 3 — Web Configuration
 There is nothing to say because here as usual everything is fine by default so press **Next** button.
- 
+
 ### Magento2 Installation step 4 — Customize Your Store
 Here you can edit timezone, currency and language options. At this step *Sample Data* checkbox should be disabled (we will install it via command line because via web-interface system show error). Also you can check/uncheck some modules at **Advanced Modules Configurations** collapse.
 When you finis just press **Next** button.
- 
+
 ### Magento2 Installation step 5 — Create Admin Account
 It's easy — just enter all data and press **Next** button
 
@@ -373,7 +380,7 @@ That's it. Now you need just reset cache in `Admin panel -> System -> Cache Mana
 
 # Troubleshooting
 ## Problem with skin styles (less to css compile)
-If you have problem with front-end view with broken styles read this solution: [Magento2 + Magento/blank + Magento/luma + broken styles](https://github.com/magento/magento2/issues/1525) 
+If you have problem with front-end view with broken styles read this solution: [Magento2 + Magento/blank + Magento/luma + broken styles](https://github.com/magento/magento2/issues/1525)
 
 # Changelog
 All notable changes to this project will be documented in this section
