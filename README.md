@@ -178,10 +178,10 @@ Perfect, it is work! Now install Sample Data.
 Go to `project_folder/vagrant/` and run `vagrant ssh`. Then run commands:
 ```
 $ cd /vagrant/httpdocs
-$ composer config repositories.magento composer http://packages.magento.com
+$ composer config repositories.magento composer https://packages.magento.com
 ```
 
-Then `require` latest sample data version that you can find here: [http://packages.magento.com/#!/magento/module-sample-data](http://packages.magento.com/#!/magento/module-sample-data), for example:
+Then `require` latest sample data version that you can find here: [https://packages.magento.com/#!/magento/module-sample-data](https://packages.magento.com/#!/magento/module-sample-data), for example:
 ```
 $ composer require magento/sample-data:1.0.0-beta
 ./composer.json has been updated
