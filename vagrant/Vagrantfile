@@ -7,50 +7,55 @@ Vagrant.configure("2") do |config|
     # please see the online documentation at vagrantup.com.
 
     # Every Vagrant virtual environment requires a box to build off of.
-    # config.vm.box = "precise64"
-    # config.vm.box = "precise32"
-    config.vm.box = "trusty64"
+    ## VirtualBox
+    config.vm.box = "ubuntu/xenial64"
+    ## VMWare
+    # config.vm.box = "boxcutter/ubuntu1604"
 
-    # The url from where the 'config.vm.box' box will be fetched if it
-    # doesn't already exist on the user's system.
-    # config.vm.box_url = "http://files.vagrantup.com/precise64.box"
-    # config.vm.box_url = "http://files.vagrantup.com/precise32.box"
-    config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-
-    # Prefer VMware Fusion before VirtualBox
-      config.vm.provider "vmware_fusion"
-      config.vm.provider "virtualbox"
 
     # Provision
-    config.vm.provision :shell, :path => "bootstrap.sh"
+    config.vm.provision :shell, :path => "provision/provision.sh"
 
     # Create a forwarded port mapping which allows access to a specific port
     # within the machine from a port on the host machine. In the example below,
     # accessing "localhost:8080" will access port 80 on the guest machine.
-    config.vm.network :forwarded_port, guest: 80, host: 8910
+    config.vm.network :forwarded_port, guest: 80, host: 8903
     config.vm.network :forwarded_port, guest: 22, host: 2210
 
+
     # Synced folder
-    config.vm.synced_folder "../magento2/", "/vagrant/httpdocs", id: "vagrant-root", owner: "vagrant", group: "www-data", mount_options: ["dmode=775,fmode=664"]
+    ## Default
+    config.vm.synced_folder "../magento2/", "/var/www/magento2", id: "ubuntu", owner: "ubuntu", group: "www-data", mount_options: ["dmode=775,fmode=664"]
+
+    ## Sync with NFS
+    # config.vm.synced_folder "../magento2/", "/var/www/magento2", nfs: true, mount_options: ["nolock", "async"], bsd__nfs_options: ["alldirs","async","nolock"]
+
+    ## Sync with vagrant-bindfs
+    # config.vm.synced_folder     "../magento2/", "/vagrant-nfs", type: "nfs"
+    # config.bindfs.bind_folder   "/vagrant-nfs", "/var/www/magento2/"
+
 
     # VirtualBox settings
     config.vm.provider :virtualbox do |vb|
-        # vb.customize ["modifyvm", :id, "--memory", "640"]
-        # vb.customize ["modifyvm", :id, "--memory", "1024"]
-        # vb.customize ["modifyvm", :id, "--memory", "2048"]
-        # vb.customize ["modifyvm", :id, "--memory", "3072"]
         vb.customize ["modifyvm", :id, "--memory", "4096"]
+        vb.customize ["modifyvm", :id, "--cpus", "2"]
+    end
+
+    # VMWare settings
+    config.vm.provider "vmware_fusion" do |v|
+        v.vmx["memsize"] = "4096"
+        v.vmx["numvcpus"] = "2"
     end
 
 
     # Host Manager
-    config.hostmanager.enabled              = true
-    config.hostmanager.manage_host          = true
-    config.hostmanager.ignore_private_ip    = false
-    config.hostmanager.include_offline      = true
-    config.vm.define 'magento2-vagrant' do |node|
-        node.vm.hostname = 'magento2-vagrant'
-        node.vm.network :private_network, ip: '192.168.10.10'
-        node.hostmanager.aliases = %w(magento2-vagrant.dev)
+    config.hostmanager.enabled = true
+    config.hostmanager.manage_host = true
+    config.hostmanager.ignore_private_ip = false
+    config.hostmanager.include_offline = true
+    config.vm.define 'magento2' do |node|
+        node.vm.hostname = 'magento2'
+        node.vm.network :private_network, ip: '192.168.3.10'
+        node.hostmanager.aliases = %w(magento2.dev www.magento2.dev)
     end
 end
