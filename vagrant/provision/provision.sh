@@ -41,8 +41,6 @@ ln -s /etc/nginx/sites-available/magento.conf /etc/nginx/sites-enabled/magento.c
 
 rm -rf /etc/nginx/sites-enabled/default
 
-mkfir -p /var/www/magento2
-
 echo ""
 echo ""
 echo "=================================================="
