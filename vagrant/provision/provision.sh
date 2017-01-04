@@ -88,8 +88,8 @@ echo ""
 echo "=================================================="
 echo "UPDATE PROFILE"
 echo "=================================================="
-echo "export PATH=$PATH:/var/www/magento2/bin" >> /home/ubuntu/.bash_profile
-usermod -a -G www-data ubuntu
+echo "export PATH=$PATH:/var/www/magento2/bin" >> /home/vagrant/.bash_profile
+usermod -a -G www-data vagrant
 
 echo "=================================================="
 echo "============= INSTALLATION COMPLETE =============="

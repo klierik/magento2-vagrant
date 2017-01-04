@@ -8,9 +8,9 @@ Vagrant.configure("2") do |config|
 
     # Every Vagrant virtual environment requires a box to build off of.
     ## VirtualBox
-    config.vm.box = "ubuntu/xenial64"
+    # config.vm.box = "ubuntu/xenial64"
     ## VMWare
-    # config.vm.box = "boxcutter/ubuntu1604"
+    config.vm.box = "geerlingguy/ubuntu1604"
 
 
     # Provision
@@ -19,20 +19,20 @@ Vagrant.configure("2") do |config|
     # Create a forwarded port mapping which allows access to a specific port
     # within the machine from a port on the host machine. In the example below,
     # accessing "localhost:8080" will access port 80 on the guest machine.
-    config.vm.network :forwarded_port, guest: 80, host: 8903
-    config.vm.network :forwarded_port, guest: 22, host: 2210
+    config.vm.network :forwarded_port, guest: 80, host: 8901
+    config.vm.network :forwarded_port, guest: 22, host: 2204
 
 
     # Synced folder
     ## Default
-    config.vm.synced_folder "../magento2/", "/var/www/magento2", id: "ubuntu", owner: "ubuntu", group: "www-data", mount_options: ["dmode=775,fmode=664"]
+    # config.vm.synced_folder "../magento2/", "/var/www/magento2", id: "ubuntu", owner: "ubuntu", group: "www-data", mount_options: ["dmode=775,fmode=664"]
 
     ## Sync with NFS
     # config.vm.synced_folder "../magento2/", "/var/www/magento2", nfs: true, mount_options: ["nolock", "async"], bsd__nfs_options: ["alldirs","async","nolock"]
 
     ## Sync with vagrant-bindfs
     # config.vm.synced_folder     "../magento2/", "/vagrant-nfs", type: "nfs"
-    # config.bindfs.bind_folder   "/vagrant-nfs", "/var/www/magento2/"
+    # config.bindfs.bind_folder   "/vagrant-nfs", "/var/www/magento2/", owner: "www-data", group: "vagrant", perms: "u=rwx:g=rwx:o=rwx"
 
 
     # VirtualBox settings
@@ -55,7 +55,7 @@ Vagrant.configure("2") do |config|
     config.hostmanager.include_offline = true
     config.vm.define 'magento2' do |node|
         node.vm.hostname = 'magento2'
-        node.vm.network :private_network, ip: '192.168.3.10'
+        node.vm.network :private_network, ip: '192.168.77.4'
         node.hostmanager.aliases = %w(magento2.dev www.magento2.dev)
     end
 end
