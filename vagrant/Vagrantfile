@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
 
     ## Sync with vagrant-bindfs
     # config.vm.synced_folder     "../magento2/", "/vagrant-nfs", type: "nfs"
-    # config.bindfs.bind_folder   "/vagrant-nfs", "/var/www/magento2/"
+    # config.bindfs.bind_folder   "/vagrant-nfs", "/var/www/magento2/", owner: "www-data", group: "vagrant", perms: "u=rwx:g=rwx:o=rwx"
 
 
     # VirtualBox settings
